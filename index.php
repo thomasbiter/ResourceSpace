@@ -9,8 +9,21 @@ $k=getvalescaped("k","");if (($k=="") || (!check_access_key_collection(getvalesc
 if (!hook("replacetopurl"))
 	{ 
 	$topurl="pages/" . $default_home_page;
-	if ($use_theme_as_home) {$topurl="pages/themes.php";}
-	if ($use_recent_as_home) {$topurl="pages/search.php?search=" . urlencode("!last".$recent_search_quantity);}
+	// ADD MOBILE DETECT
+        $is_mobile = 0;
+        include_once("/pages/m/mobile_detect.php");
+        $detect = new Mobile_Detect();
+        if($detect-&gt;isMobile())
+	$is_mobile = 1;
+	else 
+	$is_mobile = 0;
+        if($is_mobile)
+        $topurl= "pages/m/search.php?search=" . urlencode("!last".$recent_search_quantity);
+        else{
+        $topurl="pages/" . $default_home_page;
+        if ($use_theme_as_home) {$topurl="pages/themes.php";}
+        if ($use_recent_as_home) {$topurl="pages/search.php?search=" . urlencode("!last".$recent_search_quantity);}
+        }
 	} /* end hook replacetopurl */ 
 
 
