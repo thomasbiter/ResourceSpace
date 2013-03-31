@@ -1,5 +1,5 @@
 ResourceSpace Clone
 ===================
-Test of Git and clone RS with SVN
+Test of Git and RS
 A few experimental plugins and stuff...
 ResourceSpace Clone
